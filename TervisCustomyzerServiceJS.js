@@ -1,6 +1,6 @@
 var $CustomyzerServiceRootURI
 
-function Initialize_TervisCustojmyzerServiceJS ({
+export function Initialize_TervisCustojmyzerServiceJS ({
     $EnvironmentName 
 }) {
     $EnvironmentNameToPrefixMap = {
