@@ -3,7 +3,7 @@ var $CustomyzerServiceRootURI
 export function Initialize_TervisCustojmyzerServiceJS ({
     $EnvironmentName 
 }) {
-    $EnvironmentNameToPrefixMap = {
+    var $EnvironmentNameToPrefixMap = {
         Delta: "DLT",
         Epsilon: "EPS",
         Production: "PRD",
@@ -18,6 +18,13 @@ async function Invoke_TervisCustomyzerService ({
     $Path
 }) {
     var $URL = $CustomyzerServiceRootURI + $Path
+    const $IsBrowser = !(typeof window === 'undefined');
+    if (!$IsBrowser) {
+        var fetch = (await import("node-fetch")).default
+    } else {
+        var fetch = window.fetch
+    }
+    
     var $Response = await fetch ($URL, 
     {
         method: "GET",
@@ -29,8 +36,8 @@ async function Invoke_TervisCustomyzerService ({
     return $Response.json()
 }
 
-async function Get_TervisCustomyzerServiceProject ({
+export async function Get_TervisCustomyzerServiceProject ({
     $ProjectID
 }) {
-    return await Invoke_CustomyzerService ({ $Path: `projects/${$ProjectID}` })
+    return await Invoke_TervisCustomyzerService ({ $Path: `projects/${$ProjectID}` })
 }
