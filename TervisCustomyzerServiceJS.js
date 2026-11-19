@@ -11,7 +11,7 @@ export function Initialize_TervisCustojmyzerServiceJS ({
         Zeta: "ZTA"
     }
 
-    $CustomyzerServiceRootURI = `https://${$EnvironmentNameToPrefixMap[$EnvironmentName]}-customizerservices.azurewebsites.net/`
+    $CustomyzerServiceRootURI = `https://${$EnvironmentNameToPrefixMap[$EnvironmentName]}-customizerservices${$EnvironmentName === "Delta" ? "-local" : ""}.azurewebsites.net/`
 }
 
 async function Invoke_TervisCustomyzerService ({
